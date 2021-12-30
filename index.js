@@ -10,8 +10,7 @@ app.set("view engine", "ejs");
 app.use('/public', express.static('public'))
 
 app.get("/", (req, res) => {
-    res.send("hello");
-    //res.render("home");
+    res.render("home");
 })
 
 app.get("/room/15", (req, res) => {
