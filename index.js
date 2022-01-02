@@ -121,6 +121,24 @@ app.get("/room/:id", (req, res) => {
 })
 
 app.get("/tada", (req, res) => {
+    item1 = false;
+    item2 = false;
+    item3 = false;
+    rm1 = false;
+    rm2 = false;
+    rm3 = false;
+    rm4 = false;
+    rm5 = false;
+    rm6 = false;
+    rm7 = false;
+    rm8 = false;
+    rm9 = false;
+    rm10 = false;
+    rm11 = false;
+    rm12 = false;
+    rm13 = false;
+    rm14 = false;
+    rm15 = false;
     res.render("escape");
 })
 app.get("/item/:name", (req, res) => {
