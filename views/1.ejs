@@ -10,6 +10,9 @@
 <body>
     <div class="container">
         <div class="row">
+            <a href="/map" class="map">Map</a>
+        </div>
+        <div class="row">
             <div class="north">
                 <a>There is a wall to the North</a>
             </div>
@@ -20,8 +23,18 @@
                 <a  >There is a wall to the West</a>
             </div>
             <div class="description">
-                <h2>Name</h2>
-                <p>flavor text</p>
+                <h2>Bone Pit</h2>
+                <p>You walk into a darkened room and feel crunching beneath your feet.
+                     You move your torch and discover broken bits of bone underfoot. 
+                     The ground slopes into a pit, filled with brittle skeleton remains. 
+                     You recognize at least one human skull; you hasten your steps to leave this macabre sight.</p>
+                <p>
+                    <% if (item1==false) { %>
+                        Before you hurry out you notice a large <a href="../item/key">Key</a> grasped in the remains of a skeletal hand at the edge of the pit.
+                    <% } else { %>
+                        You have already picked up a Key from this location
+                    <% } %>
+                </p>
             </div>
             <div class="east">
                 <a  >There is a wall to the East</a>

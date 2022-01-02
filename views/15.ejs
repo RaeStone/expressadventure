@@ -4,33 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles.css">
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <div class="north">
-            <a  >There is a wall to the North</a>
+    <div class="container">
+        <div class="row">
+            <div class="north">
+                <a>There is a wall to the North</a>
+            </div>
         </div>
-        <div class="west">
-            <a href="/room/14">Move West</a>
+
+        <div class="row">
+            <div class="west">
+                <a href="/room/14">Move West</a>
+            </div>
+            <div class="description">
+                <h2>Big Door</h2>
+                <p>At the end of the room there is an imposing door, almost twice as tall as you, and made out of thick stone. 
+                    You push against it and it does not budge but you can feel a slight draft of cool air come from the seams. 
+                    As you inspect closer you notice there is a keyhole, a thin slot about an inch tall, and an odd circular depression. 
+                    Surely there must be some way to open this door.</p>
+                <p>
+                    <% if (item1==true && item2==true && item3==true) { %>
+                        You place the crystal upon the pedastal, drop the coin into the slot, and turn the key <br>
+                        <a href="/tada">The door opens and the sunlight almost blinds you</a>
+                    <% } else { %>
+                        The door does not yield, you still need something in order to open it.
+                    <% } %>
+                </p>
+            </div>
+            <div class="east">
+                <a  >There is a wall to the East</a>
+            </div>
         </div>
-        <div class="description">
-            <h2>Name</h2>
-            <p>flavor text</p>
-            <p>
-                <% if (item1==true && item2==true && item3==true) { %>
-                    You place the crystal upon the pedastal, drop the coin into the slot, and turn the key <br>
-                    <a href="/tada">The door opens and the sunlight almost blinds you</a>
-                <% } else { %>
-                    You need to gather something to unlock this door
-                <% } %>
-            </p>
-        </div>
-        <div class="east">
-            <a  >There is a wall to the East</a>
-        </div>
-        <div class="south">
-            <a  >There is a wall to the South</a>
+
+        <div class="row">
+            <div class="south">
+                <a  >There is a wall to the South</a>
+            </div>
         </div>
     </div>
 </body>

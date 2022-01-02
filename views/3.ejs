@@ -4,25 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles.css">
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <div class="north">
-            <a  >There is a wall to the North</a>
+    <div class="container">
+        <div class="row">
+            <div class="north">
+                <a>There is a wall to the North</a>
+            </div>
         </div>
-        <div class="west">
-            <a href="/room/2">Move West</a>
+
+        <div class="row">
+            <div class="west">
+                <a href="/room/2">Move West</a>
+            </div>
+            <div class="description">
+                <h2>Ancient Altar</h2>
+                <p>A large decrepit Altar sits before you, one of its legs broken so it lays lopsided,
+                     the worn covering across the top is covered in dust. 
+                     There are old lightless torches surrounding it along with small carvings of creatures you’ve never seen.
+                      The air feels stale as if undisturbed for centuries.</p>
+                <p>
+                    <% if (item2==false) { %>
+                        You spot a small glowing <a href="../item/crystal">Crystal</a> that seems to have fallen down from atop the sloped altar.
+                    <% } else { %>
+                        You have already picked up a Crystal from this location
+                    <% } %>
+                </p>
+            </div>
+            <div class="east">
+                <a  >There is a wall to the East</a>
+            </div>
         </div>
-        <div class="description">
-            <h2>Name</h2>
-            <p>flavor text</p>
-        </div>
-        <div class="east">
-            <a  >There is a wall to the East</a>
-        </div>
-        <div class="south">
-            <a  >There is a wall to the South</a>
+
+        <div class="row">
+            <div class="south">
+                <a  >There is a wall to the South</a>
+            </div>
         </div>
     </div>
 </body>

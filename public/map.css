@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    display: flex;
+    justify-content: flex;
+}
+td {
+    height: 8em;
+    width: 8em;
+}
+.tile{
+    height: inherit;
+    width: inherit;
+    border: 1px solid black;
+    text-align: center;
+}
+.nav {
+    justify-self: center;
+}
