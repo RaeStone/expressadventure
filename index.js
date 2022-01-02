@@ -22,6 +22,7 @@ let rm13 = false;
 let rm14 = false;
 let rm15 = false;
 
+
 app.set("view engine", "ejs");
 app.use('/public', express.static('public'))
 
@@ -31,6 +32,28 @@ app.get("/", (req, res) => {
 
 app.get("/map", (req, res) => {
     res.render("map",{rm1, rm2, rm3, rm4, rm5, rm6, rm7, rm8, rm9, rm10, rm11, rm12, rm13, rm14, rm15});
+})
+
+app.get("/reset", (req, res) => {
+    item1 = false;
+    item2 = false;
+    item3 = false;
+    rm1 = false;
+    rm2 = false;
+    rm3 = false;
+    rm4 = false;
+    rm5 = false;
+    rm6 = false;
+    rm7 = false;
+    rm8 = false;
+    rm9 = false;
+    rm10 = false;
+    rm11 = false;
+    rm12 = false;
+    rm13 = false;
+    rm14 = false;
+    rm15 = false;
+    res.redirect("/");
 })
 
 /* app.get("/room/15", (req, res) => {
@@ -156,6 +179,7 @@ app.get("/item/:name", (req, res) => {
         res.render('item3');
     }
 })
+
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
