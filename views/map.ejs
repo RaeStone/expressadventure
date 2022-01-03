@@ -9,11 +9,16 @@
 </head>
 <body>
     <div class="container">
+        <div class="nav">
+            <div>
+                Press back in browser to return
+            </div>
+        </div>
         <table>
             <tbody>
                 <tr>
                     <td class="mark">
-                        <% if (rm1==true) { %>
+                        <% if (explored[0] == true) { %>
                         <div class="tile">
                             Bone Pit
                             <br>
@@ -22,14 +27,14 @@
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm2==true) { %>
+                        <% if (explored[1] == true) { %>
                         <div class="tile">
                             Engine Room
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm3==true) { %>
+                        <% if (explored[2] == true) { %>
                         <div class="tile">
                             Ancient Altar
                             <br>
@@ -41,21 +46,21 @@
                 </tr>
                 <tr>
                     <td class="mark">
-                        <% if (rm4==true) { %>
+                        <% if (explored[3] == true) { %>
                         <div class="tile">
                             Underground River
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm5==true) { %>
+                        <% if (explored[4] == true) { %>
                         <div class="tile">
                             Abandoned Library
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm6==true) { %>
+                        <% if (explored[5] == true) { %>
                         <div class="tile">
                             Spider's Nest
                         </div>
@@ -65,28 +70,28 @@
                 </tr>
                 <tr>
                     <td class="mark">
-                        <% if (rm7==true) { %>
+                        <% if (explored[6] == true) { %>
                         <div class="tile">
                             Extinguished Campfire
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm8==true) { %>
+                        <% if (explored[7] == true) { %>
                         <div class="tile">
                             The Sanctuary
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm9==true) { %>
+                        <% if (explored[8] == true) { %>
                         <div class="tile">
                             Fungi Colony
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm10==true) { %>
+                        <% if (explored[9] == true) { %>
                         <div class="tile">
                             Engless Ruins
                         </div>
@@ -96,21 +101,21 @@
                 <tr>
                     <td class="empty"></td>
                     <td class="mark">
-                        <% if (rm11==true) { %>
+                        <% if (explored[10] == true) { %>
                         <div class="tile">
                             Wailing Caverns
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm12==true) { %>
+                        <% if (explored[11] == true) { %>
                         <div class="tile">
                             Tranquil Fountain
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm13==true) { %>
+                        <% if (explored[12] == true) { %>
                         <div class="tile">
                             Treasure Room
                             <br>
@@ -122,14 +127,14 @@
                 <tr>
                     <td class="empty"></td>
                     <td class="mark">
-                        <% if (rm14==true) { %>
+                        <% if (explored[13] == true) { %>
                         <div class="tile">
                             Collapsed Prison
                         </div>
                         <% } %>
                     </td>
                     <td class="mark">
-                        <% if (rm15==true) { %>
+                        <% if (explored[14] == true) { %>
                         <div class="tile">
                             Big Door
                             <br>
@@ -139,16 +144,11 @@
                     </td>
                     <td class="empty"></td>
                 </tr>
-                <tr>
-                    <td class="nav">
-                        Press back in browser to return
-                    </td>
-                    <td class="nav">
-                        <a href="/reset">Reset Progress</a>
-                    </td>
-                </tr>
             </tbody>
         </table>
+        <div class="nav">
+            <a href="/reset">Reset Progress</a>
+        </div>
     </div>
 </body>
 </html>

@@ -5,6 +5,7 @@ body {
 .container {
     display: flex;
     justify-content: flex;
+    flex-direction: column;
 }
 td {
     height: 8em;
@@ -17,8 +18,6 @@ td {
     text-align: center;
 }
 .nav {
-    height: 3em;
-    width: 15em;
     justify-self: center;
     font-weight: 600;
     font-size: 1.1em;

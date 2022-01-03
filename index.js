@@ -1,185 +1,129 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3400;
+const session = require("express-session");
 
-let item1 = false;
-let item2 = false;
-let item3 = false;
-
-let rm1 = false;
-let rm2 = false;
-let rm3 = false;
-let rm4 = false;
-let rm5 = false;
-let rm6 = false;
-let rm7 = false;
-let rm8 = false;
-let rm9 = false;
-let rm10 = false;
-let rm11 = false;
-let rm12 = false;
-let rm13 = false;
-let rm14 = false;
-let rm15 = false;
-
+let items = Array(3).fill(false);
+let explored = Array(15).fill(false);
 
 app.set("view engine", "ejs");
-app.use('/public', express.static('public'))
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use('/public', express.static('public'));
+app.use(session({
+    secret: 'cyprus',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }))
 
 app.get("/", (req, res) => {
-    res.render("home");
+    let user = "";
+    if (req.session && req.session.username){
+        user = req.session.username;
+    }
+    res.render("index");
 })
 
-app.get("/map", (req, res) => {
-    res.render("map",{rm1, rm2, rm3, rm4, rm5, rm6, rm7, rm8, rm9, rm10, rm11, rm12, rm13, rm14, rm15});
+app.post("/login", (req, res) => {
+    valid_users = [
+        {name: "Rae", password: "Rae"},
+        {name: "Nmuta", password: "Nmuta"},
+        {name: "Cooper", password: "Anime"}
+    ]
+    const user = req.body.username;
+    const pass = req.body.password
+
+    const found_user = valid_users.find(userSearch => {
+        return userSearch.name == user && userSearch.password == pass;
+    })
+
+    if(found_user) {
+        req.session.username = user;
+        res.redirect("/start");
+    }
+    else {
+        req.session.destroy(()=>{});
+        res.redirect("/");
+    }
+    req.session.username = user;
 })
 
-app.get("/reset", (req, res) => {
-    item1 = false;
-    item2 = false;
-    item3 = false;
-    rm1 = false;
-    rm2 = false;
-    rm3 = false;
-    rm4 = false;
-    rm5 = false;
-    rm6 = false;
-    rm7 = false;
-    rm8 = false;
-    rm9 = false;
-    rm10 = false;
-    rm11 = false;
-    rm12 = false;
-    rm13 = false;
-    rm14 = false;
-    rm15 = false;
-    res.redirect("/");
-})
-
-/* app.get("/room/15", (req, res) => {
-    res.render("15", {item1, item2, item3});
-    rm15 = true;
-})
-
-app.get("/room/1", (req, res) => {
-    res.render("1", {item1});
-    rm1 = true;
-})
-
-app.get("/room/3", (req, res) => {
-    res.render("3", {item2});
-    rm3 = true;
-})
-
-app.get("/room/13", (req, res) => {
-    res.render("13", {item3});
-    rm13 = true;
-}) */
-
-app.get("/room/:id", (req, res) => {
-    const id = req.params['id'];
-
-    switch (id) {
-        case "1":
-            rm1 = true;
-            res.render(id, {item1});
-            break;
-        case "2":
-            rm2 = true;
-            res.render(id);
-            break;
-        case "3":
-            rm3 = true;
-            res.render(id, {item2});
-            break;
-        case "4":
-            rm4 = true;
-            res.render(id);
-            break;
-        case "5":
-            rm5 = true;
-            res.render(id);
-            break;
-        case "6":
-            rm6 = true;
-            res.render(id);
-            break;
-        case "7":
-            rm7 = true;
-            res.render(id);
-            break;
-        case "8":
-            rm8 = true;
-            res.render(id);
-            break;
-        case "9":
-            rm9 = true;
-            res.render(id);
-            break;
-        case "10":
-            rm10 = true;
-            res.render(id);
-            break;
-        case "11":
-            rm11 = true;
-            res.render(id);
-            break;
-        case "12":
-            rm12 = true;
-            res.render(id);
-            break;
-        case "13":
-            rm13 = true;
-            res.render(id, {item3});
-            break;
-        case "14":
-            rm14 = true;
-            res.render(id);
-            break;
-        case "15":
-            rm15 = true;
-            res.render(id, {item1, item2, item3});
-            break;
+app.get("/start", (req, res) => {
+    if (req.session && req.session.username){
+        res.render("home");
+    }
+    else {
+        res.redirect("/");
     }
 })
 
+app.get("/map", (req, res) => {
+    if (req.session && req.session.username){
+        res.render("map", {explored});
+    }
+    else {
+        res.redirect("/");
+    }
+})
+
+app.get("/reset", (req, res) => {
+    if (req.session && req.session.username){
+        items.fill(false);
+        explored.fill(false);
+        res.redirect("/start");
+    }
+    else {
+        res.redirect("/");
+    }
+})
+
+app.get("/room/:id", (req, res) => {
+    const id = req.params['id'];
+    var num = parseInt(id);
+    explored[num - 1] = true;
+    if (id == "1"){
+        items[0] = true;
+        res.render(id, {items})
+        return
+    }
+    else if (id == "3") {
+        items[1] = true;
+        res.render(id, {items})
+        return
+    }
+    else if (id == "13") {
+        items[2] = true;
+        res.render(id, {items})
+        return
+    }
+    else if (id == "15") {
+        res.render("15", {items});
+        return
+    }
+    res.render(id);
+})
+
 app.get("/tada", (req, res) => {
-    item1 = false;
-    item2 = false;
-    item3 = false;
-    rm1 = false;
-    rm2 = false;
-    rm3 = false;
-    rm4 = false;
-    rm5 = false;
-    rm6 = false;
-    rm7 = false;
-    rm8 = false;
-    rm9 = false;
-    rm10 = false;
-    rm11 = false;
-    rm12 = false;
-    rm13 = false;
-    rm14 = false;
-    rm15 = false;
+    explored.fill(false);
+    items.fill(false);
     res.render("escape");
 })
 app.get("/item/:name", (req, res) => {
     const name = req.params['name'];
     if (name == 'key'){
-        item1 = true;
+        items[0] = true;
         res.render('item1');
     }
     else if (name == 'crystal'){
-        item2 = true;
+        items[1] = true;
         res.render('item2');
     }
     else if (name == 'coin'){
-        item3 = true;
+        items[2] = true;
         res.render('item3');
     }
 })
-
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
